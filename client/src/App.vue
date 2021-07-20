@@ -1,17 +1,17 @@
 <template>
   <div class="w-full md:w-8/12 lg:w-6/12 mx-auto px-6 mt-6 md:mt-20">
-    <Nav />
+    <c-nav />
     
     <router-view/>
   </div>
 </template>
 
 <script>
-import Nav from '@/components/Nav';
+import cNav from '@/components/cNav';
 
 export default {
   components: {
-    Nav
+    cNav
   }
 }
 </script>

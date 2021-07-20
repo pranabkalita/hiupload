@@ -4,7 +4,9 @@
       <li class="text-sm inline-block p-3 text-gray-800">
         <router-link :to="{ name: 'home' }">Home</router-link>
       </li>
-      <li class="text-sm inline-block p-3 text-gray-800"><a href="#">Files</a></li>
+      <li class="text-sm inline-block p-3 text-gray-800">
+        <router-link :to="{ name: 'uploads' }">Your Files</router-link>
+      </li>
     </ul>
 
     <ul class="flex items-center">
@@ -29,7 +31,7 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'Nav',
+  name: 'cNav',
 
   computed: {
     ...mapGetters({
