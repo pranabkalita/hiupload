@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="mb-8">Uploader</div>
+    <div class="mb-8">
+      <c-uploader />
+    </div>
 
     <div>
       <h2 class="font-medium pb-3 border-b-2 border-gray-100 text-gray-800">Your files</h2>
@@ -17,12 +19,14 @@
 import { mapActions, mapGetters } from 'vuex'
 
 import cFile from '@/components/cFile'
+import cUploader from '@/components/cUploader'
 
 export default {
   name: 'Upload',
 
   components: {
-    cFile
+    cFile,
+    cUploader
   },
 
   computed: {
