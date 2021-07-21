@@ -5,11 +5,16 @@ export default {
 
   state: {
     files: [],
+    usage: 0,
   },
 
   getters: {
     files(state) {
       return state.files
+    },
+
+    usage(state) {
+      return state.usage
     },
   },
 
@@ -24,6 +29,18 @@ export default {
 
     REMOVE_FILE(state, uuid) {
       state.files = state.files.filter((file) => file.uuid !== uuid)
+    },
+
+    SET_USAGE(state, usage) {
+      state.usage = usage
+    },
+
+    INCREMENT_USAGE(state, usage) {
+      state.usage = state.usage + usage
+    },
+
+    DECREMENT_USAGE(state, usage) {
+      state.usage = state.usage - usage
     },
   },
 
@@ -42,12 +59,20 @@ export default {
       })
 
       commit('ADD_FILE', response.data.data)
+      commit('INCREMENT_USAGE', file.fileSize)
     },
 
-    async deleteFile({ commit }, uuid) {
-      await axios.delete(`/api/files/${uuid}`)
+    async deleteFile({ commit }, file) {
+      await axios.delete(`/api/files/${file.uuid}`)
 
-      commit('REMOVE_FILE', uuid)
+      commit('REMOVE_FILE', file.uuid)
+      commit('DECREMENT_USAGE', file.size)
+    },
+
+    async getUsage({ commit }) {
+      const response = await axios.get('/api/user/usage')
+
+      commit('SET_USAGE', response.data.data.usage)
     },
   },
 }

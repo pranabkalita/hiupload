@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Plan;
 use Laravel\Cashier\Billable;
 use Laravel\Cashier\Subscription;
 use Laravel\Sanctum\HasApiTokens;
@@ -43,6 +44,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // MODEL METHODS
+
+    public function usage()
+    {
+        return $this->files->sum('size');
+    }
+
+    // RELATIONSHIPS
 
     public function files()
     {

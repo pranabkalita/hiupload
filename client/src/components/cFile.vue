@@ -28,7 +28,7 @@ export default {
 
     async deleteFile() {
       if (window.confirm('Really delete this file ?')) {
-        await this.deleteFileAction(this.file.uuid)
+        await this.deleteFileAction(this.file)
       }
     }
   }

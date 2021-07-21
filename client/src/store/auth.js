@@ -41,7 +41,7 @@ export default {
         const user = await axios.get('/api/user')
 
         commit('SET_AUTHENTICATED', true)
-        commit('SET_USER', user.data)
+        commit('SET_USER', user.data.data)
       } catch (e) {
         commit('SET_AUTHENTICATED', false)
         commit('SET_USER', null)
