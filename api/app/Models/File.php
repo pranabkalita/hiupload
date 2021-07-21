@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class File extends Model
@@ -16,6 +17,11 @@ class File extends Model
     public static function booted() {
         static::creating(function($file) {
             $file->uuid = Str::uuid();
+        });
+
+        // Delete file from S3 when a file is deleted from database
+        static::deleted(function($file) {
+            Storage::disk('s3')->delete($file->path);
         });
     }
 }

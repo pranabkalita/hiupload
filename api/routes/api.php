@@ -29,4 +29,5 @@ Route::post('/files/signed', [FileController::class, 'signed']);
 
 Route::get('/files', [FileController::class, 'index']);
 Route::post('/files', [FileController::class, 'store']);
+Route::delete('/files/{file:uuid}', [FileController::class, 'destroy']);
 
