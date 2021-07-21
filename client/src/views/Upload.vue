@@ -1,7 +1,11 @@
 <template>
   <div>
+    <div v-if="errors.size" class="bg-red-300 px-4 py-2 rounded-lg text-sm text-gray-800 mb-4">
+      {{ errors.size[0] }}
+    </div>
+
     <div class="mb-8">
-      <c-uploader @onProcessFile="storeFile" />
+      <c-uploader @onProcessFile="storeFile" @validation="setValidationErrors" />
     </div>
 
     <div>
@@ -29,6 +33,12 @@ export default {
     cUploader
   },
 
+  data() {
+    return {
+      errors: {}
+    }
+  },
+
   computed: {
     ...mapGetters({
       files: 'files/files'
@@ -43,6 +53,10 @@ export default {
 
     async storeFile(file) {
       await this.storeFileAction(file)
+    },
+
+    setValidationErrors(errors) {
+      this.errors = errors
     }
   },
 

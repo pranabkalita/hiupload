@@ -13,6 +13,9 @@ export default {
       server: {
         // 1. Define what to do for file upload
         process: (fieldName, file, metadata, load, error, progress, abort) => {
+          // 0. Set all validation to false
+          this.$emit('validation', {})
+
           // 5. Create a new FormData and CancelToken (to cancel the upload)
           let form = new FormData()
           const cancelTokenSource = axios.CancelToken.source()
@@ -47,6 +50,13 @@ export default {
               // 13. Show the upload success
               load(`${file.additionalData.key}`)
             })
+          }).catch((e) => {
+            // If the uploaded size is bigger than the space available
+            if (e.response.status === 422) {
+              this.$emit('validation', e.response.data.errors)
+            }
+
+            abort()
           })
 
           // 14. Return abort method of filepond to abort the progress
