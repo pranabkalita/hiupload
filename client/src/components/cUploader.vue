@@ -67,6 +67,8 @@ export default {
 
         // 16. Remove the files from the filepond upload box
         pond.removeFile(file)
+        
+        this.$emit('onProcessFile', file)
       },
 
       // 2. Define what happens on adding file to filepond

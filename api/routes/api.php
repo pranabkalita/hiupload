@@ -28,3 +28,5 @@ Route::post('/logout', LogoutController::class);
 Route::post('/files/signed', [FileController::class, 'signed']);
 
 Route::get('/files', [FileController::class, 'index']);
+Route::post('/files', [FileController::class, 'store']);
+

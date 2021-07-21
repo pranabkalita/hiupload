@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mb-8">
-      <c-uploader />
+      <c-uploader @onProcessFile="storeFile" />
     </div>
 
     <div>
@@ -37,8 +37,13 @@ export default {
 
   methods: {
     ...mapActions({
-      getfilesAction: 'files/getFiles'
-    })
+      getfilesAction: 'files/getFiles',
+      storeFileAction: 'files/storeFile',
+    }),
+
+    async storeFile(file) {
+      await this.storeFileAction(file)
+    }
   },
 
   mounted() {

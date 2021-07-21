@@ -17,6 +17,10 @@ export default {
     SET_FILES(state, files) {
       state.files = files
     },
+
+    ADD_FILE(state, file) {
+      state.files = [file, ...state.files]
+    },
   },
 
   actions: {
@@ -24,6 +28,16 @@ export default {
       let response = await axios.get('/api/files')
 
       commit('SET_FILES', response.data.data)
+    },
+
+    async storeFile({ commit }, file) {
+      const response = await axios.post('/api/files', {
+        name: file.filename,
+        size: file.fileSize,
+        path: file.serverId,
+      })
+
+      commit('ADD_FILE', response.data.data)
     },
   },
 }
