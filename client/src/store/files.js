@@ -7,6 +7,8 @@ export default {
     files: [],
     usage: 0,
     fileSharableLink: '',
+    fileDownloadData: '',
+    fileDownloadMeta: '',
   },
 
   getters: {
@@ -20,6 +22,14 @@ export default {
 
     fileSharableLink(state) {
       return state.fileSharableLink
+    },
+
+    fileDownloadData(state) {
+      return state.fileDownloadData
+    },
+
+    fileDownloadMeta(state) {
+      return state.fileDownloadMeta
     },
   },
 
@@ -50,6 +60,14 @@ export default {
 
     SET_FILE_SHARABLE_LINK(state, url) {
       state.fileSharableLink = url
+    },
+
+    SET_FILE_DOWNLOAD_DATA(state, data) {
+      state.fileDownloadData = data
+    },
+
+    SET_FILE_DOWNLOAD_META(state, meta) {
+      state.fileDownloadMeta = meta
     },
   },
 
@@ -88,6 +106,15 @@ export default {
       const response = await axios.post(`/api/files/${uuid}/links`)
 
       commit('SET_FILE_SHARABLE_LINK', response.data.data.url)
+    },
+
+    async getFile({ commit }, { uuid, token }) {
+      const response = await axios.get(
+        `/api/files/${uuid}/links?token=${token}`
+      )
+
+      commit('SET_FILE_DOWNLOAD_DATA', response.data.data)
+      commit('SET_FILE_DOWNLOAD_META', response.data.meta)
     },
   },
 }
