@@ -15,6 +15,12 @@ class SubscriptionController extends Controller
 
     public function store(Request $request)
     {
+        // nullable because if client does not pass plan we fallback to MEDIUM below
+        $this->validate($request, [
+            'plan' => ['nullable', 'exists:plans,slug'],
+            'token' => ['required']
+        ]);
+
         $plan = Plan::whereSlug($request->get('plan', 'medium'))->first();
 
         $request->user()->newSubscription('default', $plan->stripe_id)
@@ -23,7 +29,10 @@ class SubscriptionController extends Controller
 
     public function update(Request $request)
     {
-        // validate
+        $this->validate($request, [
+            'plan' => ['required', 'exists:plans,slug']
+        ]);
+
         // middleware
 
         $plan = Plan::whereSlug($request->plan)->first();
