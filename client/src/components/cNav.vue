@@ -28,7 +28,7 @@
         </li>
       </template>
 
-      <li>
+      <li v-if="!authenticated || !user.subscribed">
         <router-link :to="{ name: 'plans' }" class="text-sm inline-block px-3 py-2 text-indigo-500">Upgrade ✨</router-link>
       </li>
     </ul>

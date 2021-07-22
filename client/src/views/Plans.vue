@@ -1,7 +1,7 @@
 <template>
-  <a href="" v-for="plan in buyablePlans" :key="plan.slug">
+  <router-link :to="{ name: 'checkout', query: { plan: plan.slug } }" v-for="plan in buyablePlans" :key="plan.slug">
     <c-plan :plan="plan" class="mb-2" />
-  </a>
+  </router-link>
 </template>
 
 <script>
