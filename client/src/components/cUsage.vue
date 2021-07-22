@@ -1,5 +1,5 @@
 <template>
-  <span class="py-1 px-2 rounded-lg bg-gray-200 text-center">
+  <span class="inline-block text-sm font-medium text-gray-800 py-1 px-2 rounded-lg bg-gray-200 text-center">
     Usage: {{ usageFormatted }} / {{ storageFormatted }} ({{ percentageUsed }}%)
   </span>
 </template>

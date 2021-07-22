@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\UserUsageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,4 +32,6 @@ Route::post('/files/signed', [FileController::class, 'signed']);
 Route::get('/files', [FileController::class, 'index']);
 Route::post('/files', [FileController::class, 'store']);
 Route::delete('/files/{file:uuid}', [FileController::class, 'destroy']);
+
+Route::get('/plans', PlanController::class);
 
