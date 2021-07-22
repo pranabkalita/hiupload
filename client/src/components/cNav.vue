@@ -22,6 +22,9 @@
       </template>
 
       <template v-else>
+        <li class="text-sm inline-block px-3 py-2 text-gray-800">
+          <router-link :to="{ name: 'account' }">Account</router-link>
+        </li>
         <li class="text-sm inline-block px-3 py-2 text-gray-800"><a href="#">{{ user.name }}</a></li>
         <li class="text-sm inline-block px-3 py-2 text-gray-800">
           <a href="#" @click.prevent="logout">Logout</a>

@@ -70,7 +70,7 @@ export default {
           token: setupIntent.payment_method
         })
 
-        this.$router.replace({ name: 'home' })
+        this.$router.replace({ name: 'account' })
       }
     }
   },

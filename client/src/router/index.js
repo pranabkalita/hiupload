@@ -4,12 +4,14 @@ import Login from '../views/Login.vue'
 import Upload from '../views/Upload.vue'
 import Plans from '../views/Plans.vue'
 import Checkout from '../views/Checkout.vue'
+import Account from '../views/Account.vue'
 
 const routes = [
   { path: '/', name: 'home', component: Home },
   { path: '/login', name: 'login', component: Login },
   { path: '/uploads', name: 'uploads', component: Upload },
   { path: '/plans', name: 'plans', component: Plans },
+  { path: '/account', name: 'account', component: Account },
   {
     path: '/checkout',
     name: 'checkout',
