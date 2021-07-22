@@ -13,9 +13,7 @@
         </div>
       </div>
 
-      <button type="submit" class="bg-indigo-500 text-white px-4 py-3 leading-none rounded-lg font-medium">
-        Login
-      </button>
+      <c-button title="Login" type="submit" :loading="loading" :disabled="loading" />
     </form>
 
     <p class="text-sm text-gray-800">Not joined yet ? <a href="#" class="text-indigo-500">Create an account</a></p>
@@ -25,15 +23,22 @@
 <script>
 import { mapActions } from 'vuex'
 
+import cButton from '@/components/cButton'
+
 export default {
   name: 'Login',
+
+  components: {
+    cButton
+  },
 
   data() {
     return {
       form: {
         email: '',
         password: ''
-      }
+      },
+      loading: false
     }
   },
   
@@ -43,8 +48,17 @@ export default {
     }),
 
     async login() {
-      await this.loginAction(this.form)
-      this.$router.replace({ name: 'home' })
+      this.loading = true
+
+      try {
+        await this.loginAction(this.form)
+        
+        this.loading = false
+
+        this.$router.replace({ name: 'home' })
+      } catch (e) {
+        this.loading = false
+      }
     }
   }
 }

@@ -9,9 +9,8 @@
       </div>
     </div>
 
-    <button type="submit" v-if="availablePlans.length" class="bg-indigo-500 text-white px-4 py-3 leading-none rounded-lg font-medium">
-      Swap
-    </button>
+    <c-button v-if="availablePlans.length" title="Swap" type="submit" :disabled="loading || !form.plan" :loading="loading" />
+
     <p v-else class="text-gray-800 text-sm">There are no available plans for you to swap right now, because you're using too much storage.</p>
   </form>
 </template>
@@ -20,19 +19,22 @@
 import { mapActions, mapGetters } from 'vuex'
 
 import cPlan from '@/components/cPlan'
+import cButton from '@/components/cButton'
 
 export default {
   name: 'Swap',
 
   components: {
-    cPlan
+    cPlan,
+    cButton
   },
 
   data() {
     return {
       form: {
         plan: null
-      }
+      },
+      loading: false,
     }
   },
   
@@ -62,7 +64,9 @@ export default {
     },
 
     async swap() {
+      this.loading = true
       await this.swapPlanAction(this.form)
+      this.loading = false
 
       this.$router.replace({ name: 'account' })
     }

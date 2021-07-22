@@ -10,14 +10,15 @@
       <div id="id" ref="card"></div>
     </div>
 
-    <button type="submit" class="bg-indigo-500 text-white px-4 py-3 leading-none rounded-lg font-medium">
-      Pay
-    </button>
+    <c-button title="Pay" type="submit" :loading="loading" :disabled="loading" />
   </form>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+
+
+import cButton from '@/components/cButton'
 
 
 const stripe = Stripe(process.env.VUE_APP_STRIPE_KEY)
@@ -34,11 +35,16 @@ export default {
     }
   },
 
+  components: {
+    cButton
+  },
+
   data() {
     return {
       form: {
         name: ''
-      }
+      },
+      loading: false
     }
   },
 
@@ -55,6 +61,7 @@ export default {
     }),
 
     async submit() {
+      this.loading = true
       const { setupIntent, error } = await stripe.confirmCardSetup(this.paymentIntentSecret.client_secret, {
         payment_method: {
           card: cardElement,
@@ -64,11 +71,13 @@ export default {
 
       if(error) {
         //
+        this.loading = false
       } else {
         await this.createSubscriptionAction({ 
           plan: this.plan,
           token: setupIntent.payment_method
         })
+        this.loading = false
 
         this.$router.replace({ name: 'account' })
       }
