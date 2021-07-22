@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\FileLinkController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\StripeIntentController;
 use App\Http\Controllers\SubscriptionController;
@@ -40,7 +41,8 @@ Route::delete('/files/{file:uuid}', [FileController::class, 'destroy']);
 Route::get('/plans', PlanController::class);
 
 Route::get('/subscriptions/intent', StripeIntentController::class);
-
 Route::post('/subscriptions', [SubscriptionController::class, 'store']);
 Route::patch('/subscriptions', [SubscriptionController::class, 'update']);
+
+Route::post('/files/{file:uuid}/links', [FileLinkController::class, 'store']);
 

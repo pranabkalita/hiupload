@@ -24,4 +24,11 @@ class File extends Model
             Storage::disk('s3')->delete($file->path);
         });
     }
+
+    // RELATIONSHIPS
+
+    public function links()
+    {
+        return $this->hasOne(FileLink::class);
+    }
 }

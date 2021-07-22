@@ -6,6 +6,7 @@ export default {
   state: {
     files: [],
     usage: 0,
+    fileSharableLink: '',
   },
 
   getters: {
@@ -15,6 +16,10 @@ export default {
 
     usage(state) {
       return state.usage
+    },
+
+    fileSharableLink(state) {
+      return state.fileSharableLink
     },
   },
 
@@ -41,6 +46,10 @@ export default {
 
     DECREMENT_USAGE(state, usage) {
       state.usage = state.usage - usage
+    },
+
+    SET_FILE_SHARABLE_LINK(state, url) {
+      state.fileSharableLink = url
     },
   },
 
@@ -73,6 +82,12 @@ export default {
       const response = await axios.get('/api/user/usage')
 
       commit('SET_USAGE', response.data.data.usage)
+    },
+
+    async getFileSharableLink({ commit }, uuid) {
+      const response = await axios.post(`/api/files/${uuid}/links`)
+
+      commit('SET_FILE_SHARABLE_LINK', response.data.data.url)
     },
   },
 }
