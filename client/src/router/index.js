@@ -5,6 +5,7 @@ import Upload from '../views/Upload.vue'
 import Plans from '../views/Plans.vue'
 import Checkout from '../views/Checkout.vue'
 import Account from '../views/Account.vue'
+import Swap from '../views/Swap.vue'
 
 const routes = [
   { path: '/', name: 'home', component: Home },
@@ -12,6 +13,7 @@ const routes = [
   { path: '/uploads', name: 'uploads', component: Upload },
   { path: '/plans', name: 'plans', component: Plans },
   { path: '/account', name: 'account', component: Account },
+  { path: '/swap', name: 'swap', component: Swap },
   {
     path: '/checkout',
     name: 'checkout',
