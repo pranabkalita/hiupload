@@ -4,12 +4,20 @@
       <div class="mb-6">
         <div class="mb-3">
           <label for="email" class="inline-block text-sm mb-2">Email</label>
-          <input type="text" id="email" v-model="form.email" class="w-full border-2 border-gray-200 h-10 px-3 rounded-md">
+          <input type="text" id="email" v-model="form.email" class="w-full border-2 border-gray-200 h-10 px-3 rounded-md" :class="{ 'border-red-500': errors.email }">
+
+          <div v-if="errors.email" class="text-red-500 text-sm mt-2">
+            {{ errors.email[0] }}
+          </div>
         </div>
 
         <div class="mb-3">
           <label for="password" class="inline-block text-sm mb-2">Password</label>
-          <input type="password" id="password" v-model="form.password" class="w-full border-2 border-gray-200 h-10 px-3 rounded-md">
+          <input type="password" id="password" v-model="form.password" class="w-full border-2 border-gray-200 h-10 px-3 rounded-md" :class="{ 'border-red-500': errors.email }">
+
+          <div v-if="errors.password" class="text-red-500 text-sm mt-2">
+            {{ errors.password[0] }}
+          </div>
         </div>
       </div>
 
@@ -38,7 +46,8 @@ export default {
         email: '',
         password: ''
       },
-      loading: false
+      loading: false,
+      errors: []
     }
   },
   
@@ -58,6 +67,10 @@ export default {
         this.$router.replace({ name: 'home' })
       } catch (e) {
         this.loading = false
+
+        if (e.response.status === 422) {
+          this.errors = e.response.data.errors
+        }
       }
     }
   }
