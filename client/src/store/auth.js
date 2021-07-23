@@ -36,6 +36,20 @@ export default {
       dispatch('me')
     },
 
+    async register({ dispatch }, data) {
+      const { name, email, password, password_confirmation } = data
+
+      await axios.get('/sanctum/csrf-cookie')
+      await axios.post('/api/register', {
+        name,
+        email,
+        password,
+        password_confirmation,
+      })
+
+      dispatch('login', { email, password })
+    },
+
     async me({ commit }) {
       try {
         const user = await axios.get('/api/user')

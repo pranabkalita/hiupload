@@ -7,10 +7,12 @@ import Checkout from '../views/Checkout.vue'
 import Account from '../views/Account.vue'
 import Swap from '../views/Swap.vue'
 import Download from '../views/Download.vue'
+import Register from '../views/Register.vue'
 
 const routes = [
   { path: '/', name: 'home', component: Home },
   { path: '/login', name: 'login', component: Login },
+  { path: '/register', name: 'register', component: Register },
   { path: '/uploads', name: 'uploads', component: Upload },
   { path: '/plans', name: 'plans', component: Plans },
   { path: '/account', name: 'account', component: Account },

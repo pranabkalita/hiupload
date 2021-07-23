@@ -24,7 +24,10 @@
       <c-button title="Login" type="submit" :loading="loading" :disabled="loading" />
     </form>
 
-    <p class="text-sm text-gray-800">Not joined yet ? <a href="#" class="text-indigo-500">Create an account</a></p>
+    <p class="text-sm text-gray-800">
+      Not joined yet ? 
+      <router-link :to="{ name: 'register' }" class="text-indigo-500">Create an account</router-link>
+    </p>
   </div>
 </template>
 

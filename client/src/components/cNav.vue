@@ -18,7 +18,9 @@
         <li class="text-sm inline-block px-3 py-2 text-gray-800">
           <router-link :to="{ name: 'login' }">Sign in</router-link>
         </li>
-        <li class="text-sm inline-block px-3 py-2 text-gray-800"><a href="#">Create account</a></li>
+        <li class="text-sm inline-block px-3 py-2 text-gray-800">
+          <router-link :to="{ name: 'register' }">Create account</router-link>
+        </li>
       </template>
 
       <template v-else>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FileLinkController;
@@ -29,6 +30,7 @@ Route::get('/user/usage', UserUsageController::class);
 Route::get('/user/plan_availability', UserPlanAvailabilityController::class);
 
 Route::post('/login', LoginController::class);
+Route::post('/register', RegisterController::class);
 Route::post('/logout', LogoutController::class);
 
 
