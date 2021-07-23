@@ -21,7 +21,8 @@ export default {
 
   methods: {
     ...mapActions({
-      getFileSharableLinkAction: 'files/getFileSharableLink'
+      getFileSharableLinkAction: 'files/getFileSharableLink',
+      snack: 'snack/snack'
     }),
 
     async getLink() {
@@ -38,6 +39,8 @@ export default {
       dummy.select()
       document.execCommand('copy')
       document.body.removeChild(dummy)
+
+      this.snack('Copied to clipboard !')
     }
   }
 }

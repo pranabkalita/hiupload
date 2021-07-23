@@ -49,6 +49,10 @@ export default {
       return this.plans.filter(
         plan => plan.slug !== this.user.plan.slug && this.planAvailability[plan.slug]
       )
+    },
+
+    chosenPlan() {
+      return this.plans.find(p => p.slug === this.form.plan)
     }
   },
 
@@ -57,6 +61,7 @@ export default {
       getPlansAction: 'plans/getPlans',
       swapPlanAction: 'plans/swapPlan',
       getPlanAvailabilityAction: 'plans/getPlanAvailability',
+      snack: 'snack/snack',
     }),
 
     canSwapToPlan(plan) {
@@ -68,6 +73,7 @@ export default {
       await this.swapPlanAction(this.form)
       this.loading = false
 
+      this.snack(`You have swapped to the ${this.chosenPlan.name} plan.`)
       this.$router.replace({ name: 'account' })
     }
   },

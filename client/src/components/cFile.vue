@@ -29,12 +29,15 @@ export default {
 
   methods: {
     ...mapActions({
-      'deleteFileAction': 'files/deleteFile'
+      'deleteFileAction': 'files/deleteFile',
+      'snack': 'snack/snack',
     }),
 
     async deleteFile() {
       if (window.confirm('Really delete this file ?')) {
         await this.deleteFileAction(this.file)
+
+        this.snack('File was deleted.')
       }
     }
   }

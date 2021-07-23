@@ -58,6 +58,7 @@ export default {
     ...mapActions({
       getPaymentIntentSecretAction: 'stripe/getPaymentIntentSecret',
       createSubscriptionAction: 'stripe/createSubscription',
+      snack: 'snack/snack',
     }),
 
     async submit() {
@@ -79,6 +80,7 @@ export default {
         })
         this.loading = false
 
+        this.snack('Subscription Created. Thank you !')
         this.$router.replace({ name: 'account' })
       }
     }

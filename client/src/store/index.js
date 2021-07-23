@@ -4,6 +4,7 @@ import auth from './auth'
 import files from './files'
 import plans from './plans'
 import stripe from './stripe'
+import snack from './snack'
 
 export default createStore({
   state: {},
@@ -14,5 +15,6 @@ export default createStore({
     files,
     plans,
     stripe,
+    snack,
   },
 })
